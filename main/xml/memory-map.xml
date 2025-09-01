@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<memory-map>
+	<!-- Main RAM -->
+	<memory type="ram" start="0x80000000" length="0x80000000"/>
+
+	<!-- Boot ROM -->
+	<memory type="rom" start="0x00100000" length="0x00020000"/>
+
+	<!-- Peripherals -->
+	<memory type="rom" start="0x00010000" length="0x000f0000"/>
+</memory-map>

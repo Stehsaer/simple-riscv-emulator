@@ -1,0 +1,7 @@
+*.txt
+run*.sh
+*.pcap
+
+build/*
+.xmake/*
+.vscode/*
