@@ -23,26 +23,26 @@ namespace device::periph
 		switch (new_address)
 		{
 		case 0:
-			counter_lo = mask.expand_byte_mask().choose_bits(data, counter_lo);
+			timer.low = mask.expand_byte_mask().choose_bits(data, timer.low);
 			counter_templow = std::nullopt;
 			break;
 
 		case 1:
-			counter_hi = mask.expand_byte_mask().choose_bits(data, counter_hi);
+			timer.high = mask.expand_byte_mask().choose_bits(data, timer.high);
 			counter_templow = std::nullopt;
 			break;
 
 		case 2:
-			cmp_lo = mask.expand_byte_mask().choose_bits(data, cmp_lo);
-			cmp_templow = std::nullopt;
+			comp.low = mask.expand_byte_mask().choose_bits(data, comp.low);
+			comp_templow = std::nullopt;
 			break;
 
 		case 3:
-			cmp_hi = mask.expand_byte_mask().choose_bits(data, cmp_hi);
-			cmp_templow = std::nullopt;
+			comp.high = mask.expand_byte_mask().choose_bits(data, comp.high);
+			comp_templow = std::nullopt;
 			break;
 
-		default:
+		[[unlikely]] default:
 			wprintln("Clock.write: address out of range: 0x{:08x}", address);
 			return std::unexpected(Error::Access_fault);
 		}
@@ -70,25 +70,25 @@ namespace device::periph
 				return result;
 			}
 			else
-				return counter_lo;
+				return timer.low;
 
 		case 1:
-			counter_templow = counter_lo;
-			return counter_hi;
+			counter_templow = timer.low;
+			return timer.high;
 
 		case 2:
-			if (cmp_templow)
+			if (comp_templow)
 			{
-				const auto result = *cmp_templow;
-				cmp_templow = std::nullopt;
+				const auto result = *comp_templow;
+				comp_templow = std::nullopt;
 				return result;
 			}
 			else
-				return cmp_lo;
+				return comp.low;
 
 		case 3:
-			cmp_templow = cmp_lo;
-			return cmp_hi;
+			comp_templow = comp.low;
+			return comp.high;
 
 		default:
 			wprintln("Clock.read: address out of range: 0x{:08x}", address);
@@ -98,7 +98,7 @@ namespace device::periph
 
 	void Clock::tick(core::csr::Mip& mip)
 	{
-		++counter;
-		if (counter > cmp) mip.value |= (1 << 7);  // mtimer interrupt
+		timer.set_64(timer.get_64() + 1);
+		if (timer.get_64() > comp.get_64()) mip.value |= (1 << 7);  // mtimer interrupt
 	}
 }

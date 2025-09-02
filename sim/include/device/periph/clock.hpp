@@ -13,30 +13,24 @@ namespace device::periph
 	 */
 	class Clock : public Periph_base
 	{
-		union
+		struct Reg
 		{
-			struct
-			{
-				u32 counter_lo;
-				u32 counter_hi;
-			};
+			u32 low;
+			u32 high;
 
-			u64 counter = 0;
+			u64 get_64() const { return (static_cast<u64>(high) << 32) | low; }
+			void set_64(u64 value)
+			{
+				low = static_cast<u32>(value & 0xFFFFFFFF);
+				high = static_cast<u32>((value >> 32) & 0xFFFFFFFF);
+			}
 		};
 
-		union
-		{
-			struct
-			{
-				u32 cmp_lo;
-				u32 cmp_hi;
-			};
-
-			u64 cmp = 0;
-		};
+		Reg timer;
+		Reg comp;
 
 		std::optional<u32> counter_templow;
-		std::optional<u32> cmp_templow;
+		std::optional<u32> comp_templow;
 
 	  public:
 
