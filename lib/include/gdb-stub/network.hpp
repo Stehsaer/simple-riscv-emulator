@@ -81,7 +81,8 @@ namespace gdb_stub
 		/**
 		 * @brief Get a packet from the decoder, waiting if necessary
 		 *
-		 * @return `std::string` if successful, `Error` otherwise
+		 * @retval std::string the packet string
+		 * @retval Error On failure
 		 */
 		std::expected<std::string, Network_handler::Error> get_packet_from_decoder();
 	};
