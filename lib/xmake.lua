@@ -1,5 +1,7 @@
 add_requires("asio", "boost")
 
+includes("test")
+
 target("core")
 
 	set_kind("static")

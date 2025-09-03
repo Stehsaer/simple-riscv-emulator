@@ -6,4 +6,4 @@ end
 
 set_project("cpp-riscv-sim")
 
-includes("main", "test", "lib")
+includes("main", "lib")
