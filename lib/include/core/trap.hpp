@@ -35,7 +35,7 @@ namespace core
 
 	/**
 	 * @brief Helper for determining if a trap is an interrupt
-	 * 
+	 *
 	 * @param trap Trap value
 	 * @return `true` if the trap is an interrupt, `false` otherwise
 	 */

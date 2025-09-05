@@ -16,13 +16,13 @@ namespace core
 {
 	/**
 	 * @brief RV32 CPU Module
-	 * 
+	 *
 	 */
 	struct CPU_module
 	{
 		/**
 		 * @brief CPU execution result.
-		 * 
+		 *
 		 */
 		struct Result : public Inst_decode_module::Result
 		{
@@ -65,14 +65,13 @@ namespace core
 		CPU_module(u32 init_pc, std::shared_ptr<Memory_interface> interface) :
 			pc(init_pc),
 			interface(std::move(interface))
-		{
-		}
+		{}
 
 		/* Emulate */
 
 		/**
 		 * @brief Execute command and generates `Trap` if needed
-		 * 
+		 *
 		 * @return Result of the execution
 		 */
 		Result execute();
@@ -86,7 +85,7 @@ namespace core
 
 		/**
 		 * @brief Fully emulates 1 CPU cycle
-		 * 
+		 *
 		 * @return Result of the emulation
 		 */
 		Result step();

@@ -17,8 +17,7 @@ namespace core::inst
 			rs1(instr.slice<19, 15>()),
 			funct3(instr.slice<14, 12>()),
 			rd(instr.slice<11, 7>())
-		{
-		}
+		{}
 	};
 
 	struct Itype
@@ -33,8 +32,7 @@ namespace core::inst
 			rs1(instr.slice<19, 15>()),
 			funct3(instr.slice<14, 12>()),
 			rd(instr.slice<11, 7>())
-		{
-		}
+		{}
 	};
 
 	struct Stype
@@ -48,8 +46,7 @@ namespace core::inst
 			rs1(instr.slice<19, 15>()),
 			rs2(instr.slice<24, 20>()),
 			funct3(instr.slice<14, 12>())
-		{
-		}
+		{}
 	};
 
 	struct Btype
@@ -59,14 +56,16 @@ namespace core::inst
 		Bitset<3> funct3;
 
 		Btype(Bitset<32> instr) :
-			imm((instr.take_bit<31>() + instr.take_bit<7>() + instr.slice<30, 25>() + instr.slice<11, 8>()
+			imm((instr.take_bit<31>()
+				 + instr.take_bit<7>()
+				 + instr.slice<30, 25>()
+				 + instr.slice<11, 8>()
 				 + Bitset<1>::zeros())
 					.sext<32>()),
 			rs1(instr.slice<19, 15>()),
 			rs2(instr.slice<24, 20>()),
 			funct3(instr.slice<14, 12>())
-		{
-		}
+		{}
 	};
 
 	struct Utype
@@ -77,8 +76,7 @@ namespace core::inst
 		Utype(Bitset<32> instr) :
 			imm(instr.slice<31, 12>() + Bitset<12>::zeros()),
 			rd(instr.slice<11, 7>())
-		{
-		}
+		{}
 	};
 
 	struct Jtype
@@ -87,11 +85,13 @@ namespace core::inst
 		Bitset<5> rd;
 
 		Jtype(Bitset<32> instr) :
-			imm((instr.take_bit<31>() + instr.slice<19, 12>() + instr.take_bit<20>() + instr.slice<30, 21>()
+			imm((instr.take_bit<31>()
+				 + instr.slice<19, 12>()
+				 + instr.take_bit<20>()
+				 + instr.slice<30, 21>()
 				 + Bitset<1>::zeros())
 					.sext<32>()),
 			rd(instr.slice<11, 7>())
-		{
-		}
+		{}
 	};
 }

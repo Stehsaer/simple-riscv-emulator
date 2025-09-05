@@ -14,20 +14,20 @@ namespace gdb_stub
 	{
 		/**
 		 * @brief `true` if this is the last slice of the file
-		 * 
+		 *
 		 */
 		bool is_end;
 
 		/**
 		 * @brief Raw data of the slice. Doesn't contain null terminator.
-		 * 
+		 *
 		 */
 		std::vector<u8> data;
 	};
 
 	/**
 	 * @brief Get xml file slice from filename
-	 * 
+	 *
 	 * @param filename Filename of the xml file
 	 * @param offset Offset in bytes
 	 * @param size Size in bytes

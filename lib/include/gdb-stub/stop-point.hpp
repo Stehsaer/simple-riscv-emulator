@@ -12,7 +12,7 @@ namespace gdb_stub
 {
 	/**
 	 * @brief Struct representing a watchpoint
-	 * 
+	 *
 	 */
 	struct Watchpoint
 	{
@@ -25,7 +25,7 @@ namespace gdb_stub
 
 	/**
 	 * @brief Struct representing a hardware breakpoint
-	 * 
+	 *
 	 */
 	struct Hw_breakpoint
 	{
@@ -34,15 +34,15 @@ namespace gdb_stub
 
 		/**
 		 * @brief Checks if the breakpoint is triggered by the CPU. If `cond` is set, it will be evaluated.
-		 * 
+		 *
 		 * @param cpu The CPU instance
-		 * @return `true` if triggered, `false` otherwise 
+		 * @return `true` if triggered, `false` otherwise
 		 */
 		bool is_triggered_by(core::CPU_module& cpu) const;
 
 		/**
 		 * @brief Create a `Hw_breakpoint` from a `Add_breakpoint` command
-		 * 
+		 *
 		 * @param cmd `Add_breakpoint` command
 		 * @return New `Hw_breakpoint`
 		 */

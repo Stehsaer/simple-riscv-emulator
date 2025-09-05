@@ -12,7 +12,7 @@ namespace device
 {
 	/**
 	 * @brief Fill policy for uninitialized memory areas
-	 * 
+	 *
 	 */
 	enum class Fill_policy
 	{
@@ -25,7 +25,7 @@ namespace device
 
 	/**
 	 * @brief Block memory device
-	 * 
+	 *
 	 */
 	class Block_memory : public core::Memory_interface
 	{
@@ -40,7 +40,7 @@ namespace device
 
 		/**
 		 * @brief Construct a new `Block_memory`
-		 * 
+		 *
 		 * @param size_bytes Size in bytes
 		 * @param mode Fill mode for uninitialized memory areas
 		 */
@@ -48,7 +48,7 @@ namespace device
 
 		/**
 		 * @brief Fill memory with data, starting at logic address `0`.
-		 * 
+		 *
 		 * @param data Data pointer
 		 * @param size Data size in bytes. Must not exceed memory size.
 		 * @return `true` if filled successfully, `false` otherwise.
@@ -63,7 +63,7 @@ namespace device
 		/**
 		 * @brief Lock the memory and become read-only.
 		 *
-		 * @note 
+		 * @note
 		 * - This function is thread-safe.
 		 * - `unlock()` before writing to memory again, especially under debug mode.
 		 */
@@ -71,21 +71,21 @@ namespace device
 
 		/**
 		 * @brief Unlock the memory and become writable.
-		 * 
+		 *
 		 */
 		void unlock() noexcept { write_lock = false; }
 
 		/**
-		 * @brief Get used space in bytes. 
+		 * @brief Get used space in bytes.
 		 * @note This is the upper-bound of the actual size. Count in granularity of pages.
-		 * 
+		 *
 		 * @return size_t Used space in bytes
 		 */
 		size_t used_space() const noexcept;
 
 		/**
 		 * @brief Reset all contents, keeping the fill policy.
-		 * 
+		 *
 		 */
 		void reset_content() noexcept;
 

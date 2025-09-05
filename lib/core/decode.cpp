@@ -21,7 +21,7 @@ namespace core
 
 	static Inst_decode_module::Result decode_lui(Bitset<32> instr) noexcept
 	{
-		inst::Utype utype(instr);
+		const inst::Utype utype(instr);
 
 		return Inst_decode_module::Result{
 			.writeback_source = Register_source::Alu,
@@ -34,7 +34,7 @@ namespace core
 
 	static Inst_decode_module::Result decode_auipc(Bitset<32> instr, u32 pc) noexcept
 	{
-		inst::Utype utype(instr);
+		const inst::Utype utype(instr);
 
 		return Inst_decode_module::Result{
 			.writeback_source = Register_source::Alu,
@@ -47,7 +47,7 @@ namespace core
 
 	static Inst_decode_module::Result decode_jal(Bitset<32> instr, u32 pc) noexcept
 	{
-		inst::Jtype jtype(instr);
+		const inst::Jtype jtype(instr);
 
 		return Inst_decode_module::Result{
 			.writeback_source = Register_source::Pc_plus_4,
@@ -66,7 +66,7 @@ namespace core
 		Bitset<32> instr
 	) noexcept
 	{
-		inst::Itype itype(instr);
+		const inst::Itype itype(instr);
 
 		return Inst_decode_module::Result{
 			.writeback_source = Register_source::Pc_plus_4,
@@ -85,7 +85,7 @@ namespace core
 		Bitset<32> instr
 	) noexcept
 	{
-		inst::Itype itype(instr);
+		const inst::Itype itype(instr);
 
 		constexpr std::array memory_opcode_list = std::to_array(
 			{Load_store_module::Funct::Load_byte,      // 000
@@ -114,7 +114,7 @@ namespace core
 		Bitset<32> instr
 	) noexcept
 	{
-		inst::Stype stype(instr);
+		const inst::Stype stype(instr);
 
 		Load_store_module::Funct memory_funct;
 
@@ -150,7 +150,7 @@ namespace core
 		Bitset<32> instr
 	) noexcept
 	{
-		inst::Itype itype(instr);
+		const inst::Itype itype(instr);
 
 		const std::array opcode = std::to_array(
 			{ALU_module::Opcode::Add,
@@ -177,7 +177,7 @@ namespace core
 		Bitset<32> instr
 	) noexcept
 	{
-		inst::Rtype rtype(instr);
+		const inst::Rtype rtype(instr);
 
 		ALU_module::Opcode opcode;
 		const u8 funct7_select = static_cast<u8>(rtype.funct7.slice<2, 0>());
@@ -245,7 +245,7 @@ namespace core
 		u32 pc
 	) noexcept
 	{
-		inst::Btype btype(instr);
+		const inst::Btype btype(instr);
 
 		const std::array opcode = std::to_array(
 			{Branch_module::Opcode::Eq,
@@ -271,7 +271,7 @@ namespace core
 
 	static std::expected<Inst_decode_module::Result, Trap> decode_misc_mem(Bitset<32> instr) noexcept
 	{
-		inst::Itype itype(instr);
+		const inst::Itype itype(instr);
 
 		if (itype.funct3 == 0b001) return Inst_decode_module::Result{.fencei = true};
 
@@ -283,7 +283,7 @@ namespace core
 		Bitset<32> instr
 	) noexcept
 	{
-		inst::Itype itype(instr);
+		const inst::Itype itype(instr);
 
 		Inst_decode_module::Result result;
 
@@ -353,10 +353,10 @@ namespace core
 		u32 pc
 	) noexcept
 	{
-		Bitset<32> instr_bitset(instr);
+		const Bitset<32> instr_bitset(instr);
 
-		Bitset<5> opcode = instr_bitset.slice<6, 2>();
-		Bitset<2> len = instr_bitset.slice<1, 0>();
+		const Bitset<5> opcode = instr_bitset.slice<6, 2>();
+		const Bitset<2> len = instr_bitset.slice<1, 0>();
 
 		// Detect RV32C
 		if (len != 0b11) [[unlikely]]

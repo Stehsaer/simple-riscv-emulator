@@ -9,7 +9,7 @@ namespace device::periph
 {
 	/**
 	 * @brief UART Peripheral class
-	 * 
+	 *
 	 */
 	class Uart : public Periph_base
 	{
@@ -23,7 +23,7 @@ namespace device::periph
 
 		/**
 		 * @brief Set input stream for UART peripheral. Used when not inputting data from `std::cin`
-		 * 
+		 *
 		 * @param input_stream Input stream reference
 		 */
 		void set_input_stream(std::istream& input_stream);

@@ -12,7 +12,7 @@ namespace core
 {
 	/**
 	 * @brief General interface for memory access. Uses `u64` for address and `u32` for data.
-	 * 
+	 *
 	 */
 	class Memory_interface
 	{
@@ -29,7 +29,7 @@ namespace core
 
 		/**
 		 * @brief Reads a word from memory.
-		 * 
+		 *
 		 * @param address 64-bit address
 		 * @return `u32` data if successful, `Error` otherwise.
 		 */
@@ -37,7 +37,7 @@ namespace core
 
 		/**
 		 * @brief Reads a 4KiB page from memory. Address must be aligned to 4KiB.
-		 * 
+		 *
 		 * @param address 64-bit address
 		 * @param data Span of 1024 `u32` to store the read data
 		 * @return `Error` if an error occurred, `void` otherwise.
@@ -46,7 +46,7 @@ namespace core
 
 		/**
 		 * @brief Writes a word to memory. Uses `mask` to determine which bytes to write.
-		 * 
+		 *
 		 * @param address 64-bit address
 		 * @param data 32-bit data to write
 		 * @param mask Mask to determine which bytes to write. Bit 0 corresponds to LSB.
@@ -56,7 +56,7 @@ namespace core
 
 		/**
 		 * @brief Queries the size of the memory in bytes.
-		 * 
+		 *
 		 * @return Size in bytes
 		 */
 		virtual u64 size() const = 0;
@@ -64,7 +64,7 @@ namespace core
 
 	/**
 	 * @brief Memory access module
-	 * 
+	 *
 	 */
 	struct Load_store_module
 	{
@@ -101,7 +101,7 @@ namespace core
 
 	/**
 	 * @brief Inst fetch module. Simple emulator-side cache is implemented.
-	 * 
+	 *
 	 */
 	struct Inst_fetch_module
 	{
@@ -119,7 +119,7 @@ namespace core
 
 		/**
 		 * @brief Execute `fence.i` on the cache
-		 * 
+		 *
 		 */
 		void fencei();
 	};

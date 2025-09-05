@@ -13,7 +13,7 @@ namespace core
 {
 	/**
 	 * @brief Register source for writeback
-	 * 
+	 *
 	 */
 	enum class Register_source
 	{
@@ -26,13 +26,13 @@ namespace core
 
 	/**
 	 * @brief Instruction decode module
-	 * 
+	 *
 	 */
 	struct Inst_decode_module
 	{
 		/**
 		 * @brief Decode result
-		 * 
+		 *
 		 */
 		struct Result
 		{
@@ -58,7 +58,7 @@ namespace core
 
 		/**
 		 * @brief Decodes an instruction
-		 * 
+		 *
 		 * @param registers Register file object
 		 * @param instr Instruction word
 		 * @param pc Current `PC`

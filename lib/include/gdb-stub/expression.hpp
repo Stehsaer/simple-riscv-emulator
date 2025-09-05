@@ -70,7 +70,7 @@ namespace gdb_stub::expression
 
 	/**
 	 * @brief Error codes for expression execution
-	 * 
+	 *
 	 */
 	enum class Execute_error
 	{
@@ -84,7 +84,7 @@ namespace gdb_stub::expression
 
 	/**
 	 * @brief Result of bytecode execution
-	 * 
+	 *
 	 */
 	struct Execute_result
 	{
@@ -103,7 +103,7 @@ namespace gdb_stub::expression
 
 	/**
 	 * @brief Execute bytecode sequence
-	 * 
+	 *
 	 * @param access_memory_func Function for accessing memory
 	 * @param access_register_func Function for accessing registers
 	 * @param bytecode_sequence `std::vector<u8>` containing the bytecode sequence

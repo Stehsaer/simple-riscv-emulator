@@ -22,7 +22,7 @@ namespace device
 
 		/**
 		 * @brief Result of memory query
-		 * 
+		 *
 		 */
 		struct Memory_query_result
 		{
@@ -35,7 +35,7 @@ namespace device
 
 		/**
 		 * @brief Query memory device that contains the given address.
-		 * 
+		 *
 		 * @param address Logical address relative to the interconnect
 		 * @return `Memory_query_result` if the address is valid, `Error::Invalid_address` otherwise.
 		 */
